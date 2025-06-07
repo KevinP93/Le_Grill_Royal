@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Grill Royal | Restaurant & Lounge Chicha</title>
+    <base target="_self">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@preline/preline@2.0.0/dist/preline.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B0000',
+                        secondary: '#D4AF37',
+                        dark: '#1a1a1a',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-in-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'pulse-slow': 'pulse 3s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+    if (!localStorage.getItem('color-theme')) {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+    } else if (localStorage.getItem('color-theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-white dark:bg-dark text-gray-800 dark:text-gray-200 font-sans">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 dark:bg-dark/90 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-primary font-bold text-2xl" id="logo">LE GRILL ROYAL</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="#accueil" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-primary transition-colors">Accueil</a>
+                        <a href="#menu" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-primary transition-colors">Menu</a>
+                        <a href="#chicha" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-primary transition-colors">Chicha Lounge</a>
+                        <a href="#galerie" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-primary transition-colors">Galerie</a>
+                        <a href="#contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-primary transition-colors">Contact</a>
+                        <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+                            <i class="fas fa-moon dark:hidden"></i>
+                            <i class="fas fa-sun hidden dark:inline"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-40 bg-white dark:bg-dark pt-20">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
+            <a href="#accueil" class="nav-link block px-3 py-2 rounded-md text-base font-medium hover:text-primary transition-colors">Accueil</a>
+            <a href="#menu" class="nav-link block px-3 py-2 rounded-md text-base font-medium hover:text-primary transition-colors">Menu</a>
+            <a href="#chicha" class="nav-link block px-3 py-2 rounded-md text-base font-medium hover:text-primary transition-colors">Chicha Lounge</a>
+            <a href="#galerie" class="nav-link block px-3 py-2 rounded-md text-base font-medium hover:text-primary transition-colors">Galerie</a>
+            <a href="#contact" class="nav-link block px-3 py-2 rounded-md text-base font-medium hover:text-primary transition-colors">Contact</a>
+            <button id="theme-toggle-mobile" class="mt-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:inline"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="pt-20 min-h-screen flex items-center justify-center parallax" style="background-image: url('/assets/restauChicha.png');">
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-in">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 animate-slide-up">LE GRILL ROYAL</h1>
+            <p class="text-xl md:text-2xl text-secondary mb-8 animate-slide-up" style="animation-delay: 0.2s;">L'excellence de la viande & l'art de la chicha</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-slide-up" style="animation-delay: 0.4s;">
+                <a href="#reservation" class="bg-primary hover:bg-red-900 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105">Réserver une table</a>
+                <a href="#menu" class="bg-transparent border-2 border-secondary text-secondary hover:bg-secondary hover:text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105">Découvrir le menu</a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-0 right-0 text-center animate-bounce">
+            <a href="#about" class="text-white text-2xl"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white dark:bg-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-primary">Notre Philosophie</h2>
+                    <p class="text-lg mb-6">Depuis 2010, Le Grill Royal allie tradition et modernité pour vous offrir une expérience culinaire exceptionnelle. Nos viandes premium, sélectionnées avec soin auprès des meilleurs éleveurs, sont préparées avec passion par nos chefs.</p>
+                    <p class="text-lg mb-8">Notre lounge chicha vous propose des saveurs raffinées dans un cadre élégant et convivial, parfait pour clore votre repas en beauté.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center">
+                            <div class="bg-primary rounded-full p-2 mr-3">
+                                <i class="fas fa-utensils text-white"></i>
+                            </div>
+                            <span>Cuisine artisanale</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-primary rounded-full p-2 mr-3">
+                                <i class="fas fa-wine-glass-alt text-white"></i>
+                            </div>
+                            <span>Cave à vin sélectionnée</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-primary rounded-full p-2 mr-3">
+                                <i class="fas fa-smoking text-white"></i>
+                            </div>
+                            <span>Chichas premium</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative h-96 rounded-xl overflow-hidden shadow-xl animate-fade-in" style="animation-delay: 0.2s;">
+                    <img src="assets/viande.png" alt="Restaurant interior" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-6">
+                        <div>
+                            <h3 class="text-white text-xl font-bold">Un cadre exceptionnel</h3>
+                            <p class="text-gray-300">Découvrez notre salle climatisée et notre terrasse panoramique</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">Notre Carte</h2>
+                <p class="text-lg max-w-2xl mx-auto">Découvrez nos spécialités de viandes maturées et nos accompagnements faits maison</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+            </div>
+        </div>
+    </section>
+
+    <!-- Chicha Section -->
+    <section id="chicha" class="py-20 bg-white dark:bg-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1 animate-fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-primary">Chicha Lounge</h2>
+                    <p class="text-lg mb-6">Notre espace chicha vous propose une sélection exclusive de tabacs aromatisés et de mélanges maison, préparés avec des ingrédients de qualité supérieure.</p>
+                    <p class="text-lg mb-8">Détendez-vous dans notre lounge élégant avec une chicha personnalisée selon vos goûts, accompagnée de nos cocktails signature.</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
+                            <h3 class="font-bold text-secondary mb-2">Classiques</h3>
+                            <p>Double pomme, Menthe, Fraise...</p>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
+                            <h3 class="font-bold text-secondary mb-2">Spécialités</h3>
+                            <p>Mélanges exclusifs du chef</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2 relative h-96 rounded-xl overflow-hidden shadow-xl animate-fade-in" style="animation-delay: 0.2s;">
+                    <img src="/assets/chicha.png" alt="Chicha lounge" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-6">
+                        <div>
+                            <h3 class="text-white text-xl font-bold">Ambiance détente</h3>
+                            <p class="text-gray-300">Un moment de convivialité à partager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="galerie" class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">Galerie</h2>
+                <p class="text-lg max-w-2xl mx-auto">Quelques instants capturés dans notre établissement</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="relative group overflow-hidden rounded-lg h-48">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Steak" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fas fa-search-plus text-white text-2xl"></i>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-lg h-48">
+                    <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Restaurant" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fas fa-search-plus text-white text-2xl"></i>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-lg h-48">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Chicha" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fas fa-search-plus text-white text-2xl"></i>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-lg h-48">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Dessert" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fas fa-search-plus text-white text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Ce que disent nos clients</h2>
+                <p class="text-lg max-w-2xl mx-auto">Découvrez les expériences de nos convives</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white/10 p-8 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-all">
+                    <div class="flex items-center mb-4">
+                        <div class="text-secondary text-2xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="italic mb-6">"La côte de bœuf était parfaitement cuite et d'une tendreté exceptionnelle. Le service impeccable et l'ambiance du lounge chicha ont rendu cette soirée inoubliable."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4 overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Sophie Martin</h4>
+                            <p class="text-sm text-gray-300">Google Review</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/10 p-8 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-all">
+                    <div class="flex items-center mb-4">
+                        <div class="text-secondary text-2xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="italic mb-6">"Les mélanges de chicha sont exceptionnels, avec des saveurs subtiles et une fumée très douce. L'endroit idéal pour terminer une soirée entre amis."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4 overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Thomas Leroy</h4>
+                            <p class="text-sm text-gray-300">TripAdvisor</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/10 p-8 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-all">
+                    <div class="flex items-center mb-4">
+                        <div class="text-secondary text-2xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="italic mb-6">"La qualité des produits est au rendez-vous. J'ai particulièrement apprécié la sélection de vins qui accompagne parfaitement les viandes. À refaire sans hésiter!"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4 overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Élodie Dupont</h4>
+                            <p class="text-sm text-gray-300">La Fourchette</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section id="reservation" class="py-20 bg-white dark:bg-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-primary">Réservation</h2>
+                    <p class="text-lg mb-6">Réservez votre table pour une expérience culinaire mémorable ou votre place dans notre lounge chicha.</p>
+                    <p class="text-lg mb-8">Ouvert du mardi au dimanche de 12h à 15h et de 19h à minuit.</p>
+                    <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg">
+                        <h3 class="font-bold text-xl mb-4">Contact</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-primary mr-3"></i>
+                                <span>123 Avenue des Gourmets, 75008 Paris</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone-alt text-primary mr-3"></i>
+                                <span>01 23 45 67 89</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-primary mr-3"></i>
+                                <span>contact@legrillroyal.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg animate-fade-in" style="animation-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold mb-6">Réserver en ligne</h3>
+                    <form id="reservation-form" class="space-y-4">
+                        <div>
+                            <label for="name" class="block mb-2">Nom complet</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="email" class="block mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="phone" class="block mb-2">Téléphone</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="date" class="block mb-2">Date</label>
+                                <input type="date" id="date" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            <div>
+                                <label for="time" class="block mb-2">Heure</label>
+                                <input type="time" id="time" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="guests" class="block mb-2">Nombre de personnes</label>
+                            <select id="guests" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option value="1">1 personne</option>
+                                <option value="2">2 personnes</option>
+                                <option value="3">3 personnes</option>
+                                <option value="4">4 personnes</option>
+                                <option value="5">5 personnes</option>
+                                <option value="6">6 personnes</option>
+                                <option value="7">7 personnes</option>
+                                <option value="8">8+ personnes</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block mb-2">Demandes spéciales</label>
+                            <textarea id="message" rows="3" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary hover:bg-red-900 text-white font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-105">Réserver</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">Nous trouver</h2>
+                <p class="text-lg max-w-2xl mx-auto">Venez nous rencontrer dans notre établissement</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-6">Heures d'ouverture</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
+                            <span>Mardi - Jeudi</span>
+                            <span class="font-medium">12h - 15h | 19h - 23h</span>
+                        </div>
+                        <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
+                            <span>Vendredi - Samedi</span>
+                            <span class="font-medium">12h - 15h | 19h - Minuit</span>
+                        </div>
+                        <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
+                            <span>Dimanche</span>
+                            <span class="font-medium">12h - 15h | 19h - 23h</span>
+                        </div>
+                        <div class="flex justify-between pb-2">
+                            <span>Lundi</span>
+                            <span class="font-medium">Fermé</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-96 rounded-xl overflow-hidden shadow-lg">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.991440608281!2d2.292292615674389!3d48.85837007928746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee380ef7e0!2sTour%20Eiffel!5e0!3m2!1sfr!2sfr!4v1628683205043!5m2!1sfr!2sfr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-secondary">LE GRILL ROYAL</h3>
+                    <p class="mb-4">L'excellence de la viande & l'art de la chicha dans un cadre élégant et convivial.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#accueil" class="hover:text-secondary transition-colors">Accueil</a></li>
+                        <li><a href="#menu" class="hover:text-secondary transition-colors">Menu</a></li>
+                        <li><a href="#chicha" class="hover:text-secondary transition-colors">Chicha Lounge</a></li>
+                        <li><a href="#galerie" class="hover:text-secondary transition-colors">Galerie</a></li>
+                        <li><a href="#contact" class="hover:text-secondary transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-secondary mr-2"></i>
+                            <span>123 Avenue des Gourmets, 75008 Paris</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-secondary mr-2"></i>
+                            <span>01 23 45 67 89</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-secondary mr-2"></i>
+                            <span>contact@legrillroyal.com</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Newsletter</h3>
+                    <p class="mb-4">Abonnez-vous pour recevoir nos offres spéciales et actualités.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-secondary w-full">
+                        <button type="submit" class="bg-secondary hover:bg-yellow-600 text-white px-4 py-2 rounded-r-lg transition-colors">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Le Grill Royal. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Modal for image gallery -->
+    <div id="gallery-modal" class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 opacity-0 invisible transition-opacity duration-300">
+        <button id="close-modal" class="absolute top-4 right-4 text-white text-3xl">&times;</button>
+        <div class="max-w-4xl w-full">
+            <img id="modal-image" src="" alt="" class="w-full h-auto max-h-[80vh] object-contain">
+        </div>
+    </div>
+    <script src="main.js" defer></script>
+</body>
+</html>
